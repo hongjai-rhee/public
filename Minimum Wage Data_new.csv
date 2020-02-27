@@ -1,4 +1,4 @@
-Year,State,Table_Data,Footnote,High.Value,Low.Value,CPI.Average,High.2018,Low.2018,real,growth
+Year,State,Table_Data,Footnote,High.Value,Low.Value,nominal,High.2018,Low.2018,real,growth
 1968,Alabama,...,,,,,,,,
 1968,Alaska,2.1,,2.1,2.1,2.1,15.12,15.12,15.12,
 1968,Arizona,18.72 - 26.40/wk(b),(b),0.66,0.468,0.564,4.75,3.37,4.06,
