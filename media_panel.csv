@@ -1,4 +1,4 @@
-pid,hid,area,metro,fam_mem,male,age,school,spouse,religion,personal_income,family_income,executives,SE15_SF,SE 20 SF,SF_change,int_total_20,int_total_15,int_change,internet_ability,social_20
+pid,hid,area,metro,fam_mem,male,age,school,spouse,religion,personal_income,family_income,executives,SE15_SF,SE20_SF,SF_change,int_total_20,int_total_15,int_change,internet_ability,social_20
 490003,4900,1,1,4,1,25,5,0,0,1,2,0,-0.209777584,-2.347046293,-2.137268709,110,65,45,40,0
 1040003,10400,1,1,4,1,25,5,0,1,7,3.75,1,-0.752218561,2.06899543,2.821213991,495,255,240,46,0.25
 1680003,16800,1,1,4,1,25,5,0,0,8,3.5,0,-1.973293426,0.715829756,2.689123182,310,105,205,46,0.333333333
