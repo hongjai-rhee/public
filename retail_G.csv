@@ -1,4 +1,4 @@
-CustomerID,InvoiceNo,InvoiceDate,Quantity,UnitPrice,Country,TotalSales
+customer_id,InvoiceNo,InvoiceDate,Quantity,UnitPrice,Country,TotalSales
 12662,536527,2010-12-01 13:04,6,2.95,Germany,17.7
 12662,536527,2010-12-01 13:04,6,2.55,Germany,15.3
 12662,536527,2010-12-01 13:04,12,0.85,Germany,10.2
