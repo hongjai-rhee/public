@@ -11,9 +11,26 @@ import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
 
+# [레이어 1] 단어 의미와 위치 정보를 합치는 클래스
+class PositionEmbedding(layers.Layer):
+    def __init__(self, maxlen, vocab_size, embed_dim):
+        super(PositionEmbedding, self).__init__()
+        self.token_emb = layers.Embedding(input_dim=vocab_size, output_dim=embed_dim)
+        self.pos_emb = layers.Embedding(input_dim=maxlen, output_dim=embed_dim)
+
+    def call(self, x):
+        # 입력 데이터 x의 길이를 동적으로 가져와 위치 정보를 만듭니다.
+        maxlen = tf.shape(x)[-1]
+        positions = tf.range(start=0, limit=maxlen, delta=1)
+        positions = self.pos_emb(positions)
+        x = self.token_emb(x)
+        return x + positions
+
+# [레이어 2] 실제 학습이 일어나는 트랜스포머 블록 클래스
 class TransformerBlock(layers.Layer):
     def __init__(self, embed_dim, num_heads, ff_dim, rate=0.1):
         super(TransformerBlock, self).__init__()
+        # Multi-head Attention: embed_dim을 num_heads로 나누어 병렬 처리함
         self.att = layers.MultiHeadAttention(num_heads=num_heads, key_dim=embed_dim)
         self.ffn = keras.Sequential([
             layers.Dense(ff_dim, activation="relu"),
@@ -24,12 +41,13 @@ class TransformerBlock(layers.Layer):
         self.dropout1 = layers.Dropout(rate)
         self.dropout2 = layers.Dropout(rate)
 
-    def call(self, inputs, training=None): # Sequential을 위해 인자 정리
-        # 생성 모델용이므로 use_causal_mask를 아예 True로 고정하거나 기본값 설정
+    def call(self, inputs, training=None):
+        # 1. 셀프 어텐션 (생성 모델이므로 미래 단어를 가리는 causal mask 사용)
         attn_output = self.att(inputs, inputs, use_causal_mask=True)
         attn_output = self.dropout1(attn_output, training=training)
-        out1 = self.layernorm1(inputs + attn_output)
+        out1 = self.layernorm1(inputs + attn_output) # 잔차 연결(Residual)
 
+        # 2. 피드 포워드 (개별 지식 학습)
         ffn_output = self.ffn(out1)
         ffn_output = self.dropout2(ffn_output, training=training)
-        return self.layernorm2(out1 + ffn_output)
+        return self.layernorm2(out1 + ffn_output) # 잔차 연결(Residual)
