@@ -7,6 +7,10 @@ Original file is located at
     https://colab.research.google.com/drive/1yuMn5sqmwYd9V5j-KsruFbQfBGN8s8Ul
 """
 
+import numpy as np; import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
+
 # ---------------------------------------------------------
 # [레이어 1] Position Embedding
 class PositionEmbedding(layers.Layer):
