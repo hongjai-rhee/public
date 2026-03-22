@@ -13,7 +13,7 @@ from tensorflow.keras import layers
 # ---------------------------------------------------------
 #  텍스트 데이터용 Embedding + Positional Encoding
 # ---------------------------------------------------------
-class TextEmbedding(layers.Layer):
+class TokenEmbedding(layers.Layer):
     def __init__(self, input_dim, output_dim, maxlen=5000, mask_zero=False):
         super().__init__()
 
@@ -47,20 +47,32 @@ class TextEmbedding(layers.Layer):
 # ---------------------------------------------------------
 #  이미지 데이터용 Embedding + Positional Encoding
 # ---------------------------------------------------------
-class ImageEmbedding(layers.Layer):
+class PatchEmbedding(layers.Layer):
     def __init__(self, patch_size, embed_dim, num_patches):
         super().__init__()
+        # 외부에서 받은 인자들을 self에 저장해서 '내 것'으로 만듭니다.
+        self.patch_size = patch_size
+        self.embed_dim = embed_dim
+        self.num_patches = num_patches
+
         self.projection = layers.Conv2D(
-            filters=embed_dim, kernel_size=patch_size, strides=patch_size
+            filters=embed_dim,
+            kernel_size=patch_size,
+            strides=patch_size
         )
         self.pos_emb = layers.Embedding(input_dim=num_patches, output_dim=embed_dim)
 
     def call(self, images):
+        # 이제 self.embed_dim과 self.num_patches로 접근합니다.
         patches = self.projection(images)
         batch_size = tf.shape(images)[0]
-        patches = tf.reshape(patches, (batch_size, -1, embed_dim))
 
-        positions = tf.range(start=0, limit=num_patches, delta=1)
+        # 여기서 외부 변수 대신 self.embed_dim을 사용합니다!
+        patches = tf.reshape(patches, (batch_size, -1, self.embed_dim))
+
+        # 여기도 self.num_patches를 사용합니다!
+        positions = tf.range(start=0, limit=self.num_patches, delta=1)
+
         return patches + self.pos_emb(positions)
 
 # ---------------------------------------------------------
