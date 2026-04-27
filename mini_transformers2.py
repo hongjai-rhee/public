@@ -9,6 +9,7 @@ Original file is located at
 
 import tensorflow as tf
 from tensorflow.keras import layers
+import numpy as np
 
 # 텍스트 토큰에 대한 트랜스포머 임베딩
 class TextEmbedding(layers.Layer):
