@@ -9,6 +9,7 @@ Original file is located at
 
 import tensorflow as tf
 from tensorflow.keras import layers
+import numpy as np
 
 # 텍스트 토큰에 대한 트랜스포머 임베딩
 class TextEmbedding(layers.Layer):
@@ -50,37 +51,45 @@ class TextEmbedding(layers.Layer):
 
 # 이미지 토큰(패치)에 대한 트랜스포머 임베딩
 class PatchEmbedding(layers.Layer):
-    def __init__(self, patch_size, embed_dim, num_patches, **kwargs):
+    def __init__(self, patch_size, embed_dim, **kwargs):
         super().__init__(**kwargs)
         self.patch_size = patch_size
         self.embed_dim = embed_dim
-        self.num_patches = num_patches
 
+    def build(self, input_shape):
+        # 1. 입력 이미지 크기를 패치 크기의 배수로 맞추기 위한 목표 크기 계산
+        # 예: 이미지 67, 패치 8 -> (67 // 8 + 1) * 8 = 72로 리사이즈
+        self.target_h = int(np.ceil(input_shape[1] / self.patch_size) * self.patch_size)
+        self.target_w = int(np.ceil(input_shape[2] / self.patch_size) * self.patch_size)
+        
+        # 2. 내부 리사이징 레이어 선언
+        self.resize_layer = layers.Resizing(self.target_h, self.target_w)
+        
+        # 3. 바뀐 크기를 바탕으로 패치 개수 재계산
+        self.num_patches = (self.target_h // self.patch_size) * (self.target_w // self.patch_size)
+        
+        # 4. 나머지 레이어 설정
         self.projection = layers.Conv2D(
-            filters=embed_dim,
-            kernel_size=patch_size,
-            strides=patch_size,
+            filters=self.embed_dim,
+            kernel_size=self.patch_size,
+            strides=self.patch_size,
             padding="valid"
         )
-        self.pos_emb = layers.Embedding(input_dim=num_patches, output_dim=embed_dim)
-
-        # 패치 투영 후 초기 정규화를 수행하여 학습 안정성을 높입니다.
+        self.pos_emb = layers.Embedding(input_dim=self.num_patches, output_dim=self.embed_dim)
         self.layernorm = layers.LayerNormalization(epsilon=1e-6)
 
     def call(self, images):
+        # 자동으로 리사이징 수행
+        images = self.resize_layer(images)
+        
         batch_size = tf.shape(images)[0]
-
-        # 1. 이미지를 패치로 나누고 선형 투영
         patches = self.projection(images)
         patches = tf.reshape(patches, (batch_size, -1, self.embed_dim))
 
-        # 2. 위치 임베딩 생성 및 더하기
         positions = tf.range(start=0, limit=self.num_patches, delta=1)
         encoded = patches + self.pos_emb(positions)
 
-        # 3. 마지막 정규화 거친 후 반환
         return self.layernorm(encoded)
-
 
 # 숫자 시계열에 대한 트랜스포머 임베딩(패치 가능)
 class TimeSeriesEmbedding(layers.Layer):
