@@ -7,10 +7,8 @@ Original file is located at
     https://colab.research.google.com/drive/1QJCkrdnLiIO4GRcPGCLhm1MdhiigF8yd
 """
 
-# 학습 속도를 빠르게 하는 Wrapper 클래스
 import gymnasium as gym
 import numpy as np
-import tensorflow as tf
 
 class FastWrapper(gym.Wrapper):
     def __init__(self, env):
@@ -28,19 +26,26 @@ class FastWrapper(gym.Wrapper):
         # 1. 원본 환경 실행
         next_state, reward, done, truncated, info = self.env.step(action)
 
-        # 2. 고속 학습을 위한 상태 전처리 (안정적인 역전파용)
+        # 2. 고속 학습을 위한 상태 전처리
         processed_state = self._process_state(next_state)
 
-        # 3. ⏱️ 조기 종료 조건 부여 (코랩 시간 낭비 방지)
-        # 루나랜더가 공중에서 시간만 끌며 춤추는 경우 (500스텝 이상) 강제 종료
-        if self.step_count > 450:
+        # 3. 🚨 조기 실패 및 시간 초과 감지 (의미 없는 움직임 제거)
+        x_pos = next_state[0]  # 가로 위치
+        angle = next_state[4]  # 우주선 각도 (라디안)
+
+        # 규칙 A: 우주선이 과도하게 기울어짐 (약 45도 이상 기울어지면 회복 불능으로 판단)
+        # 규칙 B: 화면 좌우 경계를 크게 벗어남 (x_pos 절대값이 1.0을 넘어가면 화면 이탈)
+        if abs(angle) > 0.785 or abs(x_pos) > 1.0:
             truncated = True
-            reward -= 50.0  # 시간 초과 벌칙
+            reward = -100.0  # 명확한 실패에 대한 강력한 벌칙 부여
+
+        # 규칙 C: 공중에서 시간만 끌며 춤추는 경우 (450스텝 이상) 강제 종료
+        elif self.step_count > 450:
+            truncated = True
+            reward -= 50.0   # 시간 초과 벌칙
 
         return processed_state, reward, done, truncated, info
 
     def _process_state(self, state):
-        """ 상태 벡터의 노이즈를 제어하고 신경망이 좋아하는 -1 ~ 1 사이로 부드럽게 스케일링 """
-        # 루나랜더 continuous 상태: [x, y, vx, vy, angle, v_angle, left_leg, right_leg]
-        # 지나치게 큰 물리적 수치가 튀는 것을 방지하기 위한 클리핑
+        """ 상태 벡터의 노이즈를 제어하고 -1 ~ 1 사이로 안정화 """
         return np.clip(state, -1.0, 1.0)
