@@ -20,16 +20,8 @@ class SuperFastLander(gym.Wrapper):
         state, reward, terminated, truncated, info = self.env.step(action)
         x, y, vx, vy, theta, v_theta, leg_l, leg_r = state
 
-        # 1. 완만한 가이드용 보상 설계
-        # 패널티 스케일을 약간 조절하여 원래 환경의 보상 체계를 너무 지배하지 않도록 조율합니다.
-        distance_from_center = np.sqrt(x**2 + y**2)
-        speed = np.sqrt(vx**2 + vy**2)
-        angle_tilt = np.abs(theta)
 
-        shaping_bonus = - (distance_from_center * 2.0) - (speed * 1.0) - (angle_tilt * 1.0)
-        modified_reward = reward + shaping_bonus
-
-        # 2. 조기 종료 조건의 현실적 타협 (초기 고도 1.4 및 미세 회전 허용)
+        # 추락이 홗리한 경우 조기 종료
         # - 좌우 경계 탈출 (abs(x) > 0.95)
         # - 완전히 땅 밑으로 뚫고 내려감 (y < 0.0) -> 사실상 추락
         # - 우주선이 완전히 뒤집어짐 (abs(theta) > 1.5, 즉 90도 이상 꺾임)
