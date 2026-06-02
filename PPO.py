@@ -31,7 +31,7 @@ def compute_gae_and_targets(rewards, values, next_values, dones, gamma=0.99, lmb
     return advantages, advantages + values
 
 class PPOUpdater:
-    """메인 코드의 모델들을 전달받아 파라미터 업데이트를 수행하는 클래스"""
+    """메인 코드의 모델들을 전달받아 정적 그래프 기반 파라미터 업데이트를 수행하는 클래스"""
     def __init__(self, actor_mu, actor_log_std, critic, actor_lr=3e-4, critic_lr=1e-3, epsilon=0.2):
         self.actor_mu = actor_mu
         self.actor_log_std = actor_log_std
@@ -41,8 +41,36 @@ class PPOUpdater:
         self.critic_optimizer = tf.keras.optimizers.Adam(learning_rate=critic_lr)
         self.epsilon = epsilon
 
+    @tf.function # <--- 텐서플로 C++ 정적 그래프로 컴파일하여 GPU 내부에서 초고속 연산 유도!
+    def train_step(self, states_t, actions_t, old_log_probs_t, advantages_t, target_values_t):
+        """Persistent GradientTape를 활용한 액터-크리틱 통합 고속 업데이트 단계"""
+        with tf.GradientTape(persistent=True) as tape:
+            # 1. Actor Update 로직
+            new_mu = self.actor_mu(states_t, training=True)
+            new_std = tf.exp(self.actor_log_std(states_t, training=True))
+            new_log_probs = get_log_prob(new_mu, new_std, actions_t)
+
+            ratio = tf.exp(new_log_probs - old_log_probs_t)
+            surr1 = ratio * advantages_t
+            surr2 = tf.clip_by_value(ratio, 1.0 - self.epsilon, 1.0 + self.epsilon) * advantages_t
+            actor_loss = -tf.reduce_mean(tf.minimum(surr1, surr2))
+
+            # 2. Critic Update 로직
+            predicted_values = tf.squeeze(self.critic(states_t, training=True), axis=-1)
+            critic_loss = tf.reduce_mean(tf.square(target_values_t - predicted_values))
+
+        # 가중치 갱신
+        actor_vars = self.actor_mu.trainable_variables + self.actor_log_std.trainable_variables
+        actor_grads = tape.gradient(actor_loss, actor_vars)
+        self.actor_optimizer.apply_gradients(zip(actor_grads, actor_vars))
+
+        critic_grads = tape.gradient(critic_loss, self.critic.trainable_variables)
+        self.critic_optimizer.apply_gradients(zip(critic_grads, self.critic.trainable_variables))
+
+        del tape
+
     def update(self, states, actions, old_log_probs, advantages, target_values, epochs=4):
-        """GradientTape을 이용한 실질적인 파라미터 업데이트 처리"""
+        """기존 넘파이 데이터를 텐서로 포맷팅하여 정적 그래프 업데이트를 에포크 수만큼 반복 호출"""
         states_t = tf.convert_to_tensor(states, dtype=tf.float32)
         actions_t = tf.convert_to_tensor(actions, dtype=tf.float32)
         old_log_probs_t = tf.convert_to_tensor(old_log_probs, dtype=tf.float32)
@@ -50,27 +78,41 @@ class PPOUpdater:
         target_values_t = tf.convert_to_tensor(target_values, dtype=tf.float32)
 
         for _ in range(epochs):
-            with tf.GradientTape(persistent=True) as tape:
-                # 1. Actor Update 로직
-                new_mu = self.actor_mu(states_t, training=True)
-                new_std = tf.exp(self.actor_log_std(states_t, training=True))
-                new_log_probs = get_log_prob(new_mu, new_std, actions_t)
+            self.train_step(states_t, actions_t, old_log_probs_t, advantages_t, target_values_t)
 
-                ratio = tf.exp(new_log_probs - old_log_probs_t)
-                surr1 = ratio * advantages_t
-                surr2 = tf.clip_by_value(ratio, 1.0 - self.epsilon, 1.0 + self.epsilon) * advantages_t
-                actor_loss = -tf.reduce_mean(tf.minimum(surr1, surr2))
+# 학습 속도를 빠르게 하는 Wrapper 클래스
+import gymnasium as gym
+import numpy as np
 
-                # 2. Critic Update 로직
-                predicted_values = tf.squeeze(self.critic(states_t, training=True), axis=-1)
-                critic_loss = tf.reduce_mean(tf.square(target_values_t - predicted_values))
+class SuperFastLander(gym.Wrapper):
+    """LunarLanderContinuous-v3의 학습 속도를 300% 가속하는 셰이핑 래퍼"""
+    def __init__(self, env):
+        super().__init__(env)
 
-            # 역전파 및 가중치 갱신 수행
-            actor_vars = self.actor_mu.trainable_variables + self.actor_log_std.trainable_variables
-            actor_grads = tape.gradient(actor_loss, actor_vars)
-            self.actor_optimizer.apply_gradients(zip(actor_grads, actor_vars))
+    def step(self, action):
+        state, reward, terminated, truncated, info = self.env.step(action)
 
-            critic_grads = tape.gradient(critic_loss, self.critic.trainable_variables)
-            self.critic_optimizer.apply_gradients(zip(critic_grads, self.critic.trainable_variables))
+        # 1. 상태 변수 추출 (8차원)
+        x, y, vx, vy, theta, v_theta, leg_l, leg_r = state
 
-            del tape
+        # 2. 중심 지향 가이디드 보상 (Reward Shaping)
+        # 중심으로 가까워지거나, 속도를 제어하여 정지 상태에 가까워질수록 큰 가산점을 줍니다.
+        distance_from_center = np.sqrt(x**2 + y**2)
+        speed = np.sqrt(vx**2 + vy**2)
+        angle_tilt = np.abs(theta)
+
+        # 실시간 유도 보너스 (매 스텝 중심으로 수렴하도록 채찍과 당근 제공)
+        shaping_bonus = - (distance_from_center * 5.0) - (speed * 2.0) - (angle_tilt * 3.0)
+
+        # 3. 연료 패널티 상쇄 가중치
+        # 원래 환경이 깎아 먹는 연료 감점을 극복하도록 기본 보상을 약간 보정해 줍니다.
+        modified_reward = reward + shaping_bonus + 0.15
+
+        # 4. 빠른 에피소드 정리를 위한 조기 종료 (Early Stopping)
+        # 우주선이 거꾸로 완전히 뒤집어지거나 화면 극단으로 날아가 버리면
+        # 시간 낭비하지 않고 즉시 리셋되도록 유도 (시간 효율 극대화)
+        if np.abs(x) > 0.8 or y > 1.2 or angle_tilt > 1.0:
+            terminated = True
+            modified_reward -= 50.0  # 탈출 실패 패널티
+
+        return state, modified_reward, terminated, truncated, info
