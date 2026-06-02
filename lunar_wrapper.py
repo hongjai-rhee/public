@@ -19,6 +19,8 @@ class SuperFastLander(gym.Wrapper):
     def step(self, action):
         state, reward, terminated, truncated, info = self.env.step(action)
         x, y, vx, vy, theta, v_theta, leg_l, leg_r = state
+        
+        angle_tilt = np.abs(theta)
 
 
         # 추락이 홗리한 경우 조기 종료
