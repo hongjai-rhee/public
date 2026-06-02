@@ -12,23 +12,38 @@ import gymnasium as gym
 import numpy as np
 import tensorflow as tf
 
-class SuperFastLander(gym.Wrapper):
+class FastWrapper(gym.Wrapper):
     def __init__(self, env):
         super().__init__(env)
+        self.step_count = 0
+
+    def reset(self, **kwargs):
+        self.step_count = 0
+        state, info = self.env.reset(**kwargs)
+        return self._process_state(state), info
 
     def step(self, action):
-        state, reward, terminated, truncated, info = self.env.step(action)
-        x, y, vx, vy, theta, v_theta, leg_l, leg_r = state
+        self.step_count += 1
 
+        # 1. 원본 환경 실행
+        next_state, reward, done, truncated, info = self.env.step(action)
 
-        # 추락이 홗리한 경우 조기 종료
-        # - 좌우 경계 탈출 (abs(x) > 0.95)
-        # - 완전히 땅 밑으로 뚫고 내려감 (y < 0.0) -> 사실상 추락
-        # - 우주선이 완전히 뒤집어짐 (abs(theta) > 1.5, 즉 90도 이상 꺾임)
-        angle_tilt = np.abs(theta)
-        modified_reward = reward
-        if np.abs(x) > 0.95 or y < 0.0 or angle_tilt > 1.5:
-            terminated = True
-            modified_reward -= 100.0  # 확실한 추락 패널티 부여
+        # 2. 고속 학습을 위한 상태 전처리 (안정적인 역전파용)
+        processed_state = self._process_state(next_state)
 
-        return state, modified_reward, terminated, truncated, info
+        # 3. 🔥 Reward Shaping: 보상 함수 성형 (PPO가 헤매는 시간을 극적으로 단축)
+        shaped_reward = self._shape_reward(next_state, action, reward)
+
+        # 4. ⏱️ 조기 종료 조건 부여 (코랩 시간 낭비 방지)
+        # 루나랜더가 공중에서 시간만 끌며 춤추는 경우 (500스텝 이상) 강제 종료
+        if self.step_count > 450:
+            truncated = True
+            shaped_reward -= 50.0  # 시간 초과 벌칙
+
+        return processed_state, shaped_reward, done, truncated, info
+
+    def _process_state(self, state):
+        """ 상태 벡터의 노이즈를 제어하고 신경망이 좋아하는 -1 ~ 1 사이로 부드럽게 스케일링 """
+        # 루나랜더 continuous 상태: [x, y, vx, vy, angle, v_angle, left_leg, right_leg]
+        # 지나치게 큰 물리적 수치가 튀는 것을 방지하기 위한 클리핑
+        return np.clip(state, -1.0, 1.0)
