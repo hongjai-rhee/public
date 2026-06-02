@@ -13,34 +13,28 @@ import numpy as np
 import tensorflow as tf
 
 class SuperFastLander(gym.Wrapper):
-    """LunarLanderContinuous-v3의 학습 속도를 300% 가속하는 셰이핑 래퍼"""
     def __init__(self, env):
         super().__init__(env)
 
     def step(self, action):
         state, reward, terminated, truncated, info = self.env.step(action)
-
-        # 1. 상태 변수 추출 (8차원)
         x, y, vx, vy, theta, v_theta, leg_l, leg_r = state
 
-        # 2. 중심 지향 가이디드 보상 (Reward Shaping)
-        # 중심으로 가까워지거나, 속도를 제어하여 정지 상태에 가까워질수록 큰 가산점을 줍니다.
+        # 1. 완만한 가이드용 보상 설계
+        # 패널티 스케일을 약간 조절하여 원래 환경의 보상 체계를 너무 지배하지 않도록 조율합니다.
         distance_from_center = np.sqrt(x**2 + y**2)
         speed = np.sqrt(vx**2 + vy**2)
         angle_tilt = np.abs(theta)
 
-        # 실시간 유도 보너스 (매 스텝 중심으로 수렴하도록 채찍과 당근 제공)
-        shaping_bonus = - (distance_from_center * 5.0) - (speed * 2.0) - (angle_tilt * 3.0)
+        shaping_bonus = - (distance_from_center * 2.0) - (speed * 1.0) - (angle_tilt * 1.0)
+        modified_reward = reward + shaping_bonus
 
-        # 3. 연료 패널티 상쇄 가중치
-        # 원래 환경이 깎아 먹는 연료 감점을 극복하도록 기본 보상을 약간 보정해 줍니다.
-        modified_reward = reward + shaping_bonus + 0.15
-
-        # 4. 빠른 에피소드 정리를 위한 조기 종료 (Early Stopping)
-        # 우주선이 거꾸로 완전히 뒤집어지거나 화면 극단으로 날아가 버리면
-        # 시간 낭비하지 않고 즉시 리셋되도록 유도 (시간 효율 극대화)
-        if np.abs(x) > 0.8 or y > 1.2 or angle_tilt > 1.0:
+        # 2. 조기 종료 조건의 현실적 타협 (초기 고도 1.4 및 미세 회전 허용)
+        # - 좌우 경계 탈출 (abs(x) > 0.95)
+        # - 완전히 땅 밑으로 뚫고 내려감 (y < 0.0) -> 사실상 추락
+        # - 우주선이 완전히 뒤집어짐 (abs(theta) > 1.5, 즉 90도 이상 꺾임)
+        if np.abs(x) > 0.95 or y < 0.0 or angle_tilt > 1.5:
             terminated = True
-            modified_reward -= 50.0  # 탈출 실패 패널티
+            modified_reward -= 100.0  # 확실한 추락 패널티 부여
 
         return state, modified_reward, terminated, truncated, info
