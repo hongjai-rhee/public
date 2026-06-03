@@ -42,7 +42,7 @@ class PPOUpdater:
         self.critic_optimizer = tf.keras.optimizers.Adam(learning_rate=critic_lr)
         self.epsilon = epsilon
 
-    @tf.function # <--- 텐서플로 정적 그래프 컴파일 가동
+    @tf.function(reduce_retracing=True) # <--- 텐서플로 정적 그래프 컴파일 가동
     def train_step(self, states_t, actions_t, old_log_probs_t, advantages_t, target_values_t):
         """Persistent GradientTape를 활용한 액터-크리틱 통합 고속 업데이트 단계"""
         with tf.GradientTape(persistent=True) as tape:
