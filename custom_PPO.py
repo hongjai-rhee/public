@@ -7,16 +7,14 @@ Original file is located at
     https://colab.research.google.com/drive/1QJCkrdnLiIO4GRcPGCLhm1MdhiigF8yd
 """
 
-# ppo_helper.py
-import numpy as np
-import tensorflow as tf
-
+# custom_PPO.py
 def get_log_prob(mu, std, action):
-    """연속 행동에 대한 가우시안 로그 확률 계산"""
+    """연속 행동에 대한 가우시안 로그 확률 계산 (차원 왜곡 완벽 방어)"""
     var = tf.square(std)
-    # 수식 안정성을 위해 std가 0이 되는 것을 방지하는 미소값(1e-6) 추가
+    # 수식 안정성을 위해 미소값 추가 및 수식 가독성 확보
     log_scale = tf.math.log(std + 1e-6) + 0.5 * tf.math.log(2.0 * np.pi)
     log_prob = -tf.square(action - mu) / (2.0 * var + 1e-6) - log_scale
+    # 각 행동 차원의 로그 확률을 합산하여 최종 에피소드 액션 확률 반환
     return tf.reduce_sum(log_prob, axis=-1)
 
 def compute_gae_and_targets(rewards, values, next_values, dones, gamma=0.99, lmbda=0.95):
@@ -42,21 +40,29 @@ class PPOUpdater:
         self.critic_optimizer = tf.keras.optimizers.Adam(learning_rate=critic_lr)
         self.epsilon = epsilon
 
-    @tf.function(reduce_retracing=True) # <--- 텐서플로 정적 그래프 컴파일 가동
+        # 🔥 [최적화] 컴파일 시 불필요한 파이썬 분기를 제거하기 위해 초기화 시 타입 확정
+        self.is_std_callable = callable(actor_log_std)
+
+    @tf.function(reduce_retracing=True)
     def train_step(self, states_t, actions_t, old_log_probs_t, advantages_t, target_values_t):
         """Persistent GradientTape를 활용한 액터-크리틱 통합 고속 업데이트 단계"""
         with tf.GradientTape(persistent=True) as tape:
             # 1. Actor Update 로직
             new_mu = self.actor_mu(states_t, training=True)
 
-            # 🔥 [수정 가이드] actor_log_std가 케라스 Layer(호출가능)인지, tf.Variable(변수)인지 판별하여 처리
-            if callable(self.actor_log_std):
-                new_std = tf.exp(self.actor_log_std(states_t, training=True))
+            if self.is_std_callable:
+                log_std = self.actor_log_std(states_t, training=True)
             else:
-                new_std = tf.exp(self.actor_log_std)
+                log_std = self.actor_log_std
+
+            # 🔥 [치명적 버그 수정 2] NaN 방지를 위한 클리핑 가이드 설정 (-20 ~ 2)
+            log_std = tf.clip_by_value(log_std, -20.0, 2.0)
+            new_std = tf.exp(log_std)
 
             new_log_probs = get_log_prob(new_mu, new_std, actions_t)
 
+            # 🔥 [치명적 버그 수정 1] 차원 미스매치(Broadcasting) 현상 완벽 정렬
+            # old_log_probs_t가 1차원 배치가 되도록 맞추어 수식 연산 보장
             ratio = tf.exp(new_log_probs - old_log_probs_t)
             surr1 = ratio * advantages_t
             surr2 = tf.clip_by_value(ratio, 1.0 - self.epsilon, 1.0 + self.epsilon) * advantages_t
@@ -67,7 +73,7 @@ class PPOUpdater:
             critic_loss = tf.reduce_mean(tf.square(target_values_t - predicted_values))
 
         # 가중치 갱신 대상 선별
-        if callable(self.actor_log_std):
+        if self.is_std_callable:
             actor_vars = self.actor_mu.trainable_variables + self.actor_log_std.trainable_variables
         else:
             actor_vars = self.actor_mu.trainable_variables + [self.actor_log_std]
@@ -83,8 +89,6 @@ class PPOUpdater:
 
     def update(self, states, actions, old_log_probs, advantages, target_values, epochs=4, batch_size=64):
         """기존 넘파이 데이터를 텐서로 포맷팅하고, 미니배치로 분할하여 고속 반복 업데이트 수행"""
-
-        # 파이썬 리스트로 들어온 데이터를 넘파이 배열로 변환하여 멀티 인덱싱 슬라이싱이 가능하도록 만듭니다.
         states = np.array(states)
         actions = np.array(actions)
         old_log_probs = np.array(old_log_probs)
@@ -97,21 +101,114 @@ class PPOUpdater:
         data_size = len(states)
 
         for _ in range(epochs):
-            # 매 에포크마다 무작위로 인덱스를 섞어 MCMC처럼 골고루 탐색하도록 유도
             indices = np.arange(data_size)
             np.random.shuffle(indices)
 
-            # 미니배치 루프 가동
             for start in range(0, data_size, batch_size):
                 end = start + batch_size
                 batch_idx = indices[start:end]
 
-                # 이제 에러 없이 정상적으로 슬라이싱된 후 텐서로 변환됩니다!
                 states_t = tf.convert_to_tensor(states[batch_idx], dtype=tf.float32)
                 actions_t = tf.convert_to_tensor(actions[batch_idx], dtype=tf.float32)
                 old_log_probs_t = tf.convert_to_tensor(old_log_probs[batch_idx], dtype=tf.float32)
                 advantages_t = tf.convert_to_tensor(advantages[batch_idx], dtype=tf.float32)
                 target_values_t = tf.convert_to_tensor(target_values[batch_idx], dtype=tf.float32)
 
-                # 정적 그래프 최적화 함수 호출
                 self.train_step(states_t, actions_t, old_log_probs_t, advantages_t, target_values_t)
+
+
+# ==========================================
+# 환경 및 모델 실행 메인 루프 (Colab)
+# ==========================================
+ACTOR_LR = 3e-4
+CRITIC_LR = 1e-3
+GAMMA = 0.99
+LAMBDA = 0.95
+EPSILON = 0.2
+EPOCHS = 3
+BATCH_SIZE = 256
+
+env = gym.make('LunarLanderContinuous-v3')
+
+state_dim = env.observation_space.shape[0]
+action_dim = env.action_space.shape[0]
+
+critic_model = Sequential([
+    Input(shape=(state_dim,)),
+    Dense(256, activation='tanh'),
+    Dense(128, activation='tanh'),
+    Dense(1)
+])
+
+actor_mu_model = Sequential([
+    Input(shape=(state_dim,)),
+    Dense(256, activation='tanh'),
+    Dense(128, activation='tanh'),
+    Dense(action_dim, activation='tanh')
+])
+
+# [구조 정렬] 브로드캐스팅 왜곡을 완전히 방어하기 위해 (1, action_dim) 구조 유지 및 클리핑 연계
+actor_log_std_var = tf.Variable(initial_value=tf.zeros((1, action_dim)), trainable=True, name="actor_log_std")
+
+updater = PPOUpdater(
+    actor_mu_model,
+    actor_log_std_var,
+    critic_model,
+    actor_lr=ACTOR_LR,
+    critic_lr=CRITIC_LR,
+    epsilon=EPSILON
+)
+
+rewards_history = []
+
+for episode in range(1000):
+    states, actions, rewards, dones, values, next_values, old_log_probs = [], [], [], [], [], [], []
+    state, _ = env.reset()
+    episode_reward = 0
+
+    with tf.device('/CPU:0'):
+        while True:
+            state_tensor = tf.convert_to_tensor([state], dtype=tf.float32)
+
+            mu = actor_mu_model(state_tensor)[0]
+            # 분산 수동 계산 시 로그 변수 바인딩 안전성 확보
+            std = tf.exp(tf.clip_by_value(actor_log_std_var[0], -20.0, 2.0))
+            value = critic_model(state_tensor)[0, 0]
+
+            action = np.random.normal(mu.numpy(), std.numpy())
+            action = np.clip(action, -1.0, 1.0)
+
+            # 차원 축소 스칼라 추출(.numpy())을 통해 1차원 데이터 적재 흐름 일치
+            log_prob = get_log_prob(mu, std, action)
+
+            next_state, reward, terminated, truncated, _ = env.step(action)
+            done = terminated or truncated
+
+            next_state_tensor = tf.convert_to_tensor([next_state], dtype=tf.float32)
+            next_value = 0.0 if terminated else critic_model(next_state_tensor)[0, 0].numpy()
+
+            states.append(state)
+            actions.append(action)
+            rewards.append(reward)
+            dones.append(float(done))
+            values.append(value.numpy())
+            next_values.append(next_value)
+            old_log_probs.append(log_prob.numpy()) # 수집 버퍼에는 0차원 값으로 정렬되어 적재
+
+            state = next_state
+            episode_reward += reward
+            if done:
+                break
+
+    advantages, target_values = compute_gae_and_targets(
+        np.array(rewards), np.array(values), np.array(next_values), np.array(dones),
+        gamma=GAMMA, lmbda=LAMBDA
+    )
+
+    updater.update(
+        states, actions, old_log_probs, advantages, target_values,
+        epochs=EPOCHS, batch_size=BATCH_SIZE
+    )
+
+    rewards_history.append(episode_reward)
+    print(f"Episode: {episode} | Reward: {episode_reward:.2f}")
