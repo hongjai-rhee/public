@@ -32,3 +32,5 @@
 
 
 > 📢 최신 업데이트는 [공지사항 페이지](./docs/NOTICE.md)에서 확인하실 수 있습니다.
+> 
+© 2026 Hongjai Rhee. All rights reserved.
