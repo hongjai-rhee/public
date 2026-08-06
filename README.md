@@ -1,4 +1,4 @@
-<p align="center">
+<p align="left">
   <img src="git_main.png" alt="프로젝트 로고" width="600px" />
 </p>
 ## 📝 소개
