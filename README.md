@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="이미지_주소_넣는_곳" alt="프로젝트 로고" width="600px" />
+  <img src="git_main.png" alt="프로젝트 로고" width="600px" />
 </p>
 ## 📝 소개
 ## **<쉽게 배우는 머신러닝+딥러닝>** 책의 독자를 위한 저장소입니다.
