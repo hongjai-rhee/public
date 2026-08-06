@@ -2,7 +2,7 @@
 최신 공지 사항은 [공지사항 페이지](./docs/NOTICE.md)에서 확인하실 수 있습니다.
 
 
-
+##
 <p align="left">
   <img src="git_main.png" alt="프로젝트 로고" width="600px" />
 </p>
