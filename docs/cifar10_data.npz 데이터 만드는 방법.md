@@ -19,6 +19,7 @@
 
 >y_test = np.array(data["test"]["label"])                             # 검증용 라벨
 
+> # 압축파일로 저장
 >np.savez_compressed(
     "cifar10_data.npz",
     x_train=x_train,
