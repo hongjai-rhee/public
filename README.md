@@ -6,7 +6,8 @@
 
 > [!WARNING]
 > 
-> ### 📝 이 책의 독자들만을 위한 파일 저장소입니다. 
+> ### 📝 이 책의 독자들을 위한 파일 저장소입니다.
+> **All other uses are strictly prohibitted!**
 
 다음 파일들이 저장되어 있으며 필요에 따라 수정/보완됩니다. 
 > [!IMPORTANT]
