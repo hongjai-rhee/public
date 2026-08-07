@@ -12,11 +12,13 @@
 >data=load_dataset("uoft-cs/cifar10")   # datasets 모듈의 디렉토리와 파일 이름 지정
 
 >x_train = np.stack([np.array(img) for img in data["train"]["img"]])  # 훈련용 이미지
+
 >y_train = np.array(data["train"]["label"])                           # 훈련용 라벨
+
 >x_test = np.stack([np.array(img) for img in data["test"]["img"]])    # 검증용 이미지
+
 >y_test = np.array(data["test"]["label"])                             # 검증용 라벨
 
-># 압축 파일로 저장
 >np.savez_compressed(
     "cifar10_data.npz",
     x_train=x_train,
