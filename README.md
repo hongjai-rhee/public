@@ -13,16 +13,9 @@
 > *exploring the co-evolution of human thought and artificial intelligence.*
 
 ---
-
-<p align="left">
-  <img src="git_main.png" alt="프로젝트 로고" width="600px" />
-</p>
-
-<!-- HTML 태그 뒤에는 반드시 빈 줄을 한 칸 띄워야 아래 마크다운이 깨지지 않습니다 -->
-
 > [!WARNING]
 > 
-> ### 📝 이 책의 독자들을 위한 파일 저장소입니다.
+> ### 📝 <쉽게 배우는 머신러닝 + 딥러닝> 책의 독자들을 위한 파일 저장소입니다.
 > *All other uses are strictly prohibited!!!*
 
 > [!IMPORTANT]
