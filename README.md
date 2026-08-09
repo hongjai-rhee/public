@@ -20,7 +20,7 @@
 > 
 > **/data** 실습 데이터 모음
 >
->  *All other uses are strictly prohibited!!!*
+> ⚠️ *All other uses are strictly prohibited!!!*
 
 > 📢 코드와 데이터의 사용 조건은 [라이선스](./docs/LICENSE.md)를 참조하세요.
 
