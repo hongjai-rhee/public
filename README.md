@@ -31,7 +31,7 @@
 ---
 
 ### 💬 코드 에러 및 오탈자 제보
-[GitHub Issues 바로가기](https://github.com)에 스크린샷과 함께 새 글을 남겨주세요.
+> 📢 [GitHub Issues 바로가기](https://github.com)에 스크린샷과 함께 새 글을 남겨주세요.
 * 독자님이 글을 남기시면 저자에게 즉시 알림이 전송됩니다.
 * 효과적인 피드백을 위한 [행동강령](./CODE_OF_CONDUCT.md)을 지켜주세요.
 
