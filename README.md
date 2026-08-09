@@ -1,6 +1,6 @@
 <div align="center">
 
-## **AI upon Human's shoulders. Human upon AI's shoulders. Together towards mutual progress.**
+### **AI upon Human's shoulders. Human upon AI's shoulders. Together towards mutual progress.**
 ---
 
 > *Artificial intelligence was built upon the collective wisdom of humanity;*
