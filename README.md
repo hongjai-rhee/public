@@ -12,6 +12,8 @@
 > *in turn, humanity rises higher upon the capabilities of AI,*
 > *exploring the co-evolution of human thought and artificial intelligence.*
 
+<div align="left">
+
 ---
 > [!WARNING]
 > 
