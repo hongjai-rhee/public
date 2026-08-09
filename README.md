@@ -1,4 +1,3 @@
- 
 <p align="center">
   <img src="git_banner.png"
        alt="AI upon Humanity's shoulders. Humanity upon AI's shoulders."
