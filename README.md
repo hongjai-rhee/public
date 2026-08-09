@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="title_image.png"
+  <img src="git_banner.png"
        alt="AI upon Humanity's shoulders. Humanity upon AI's shoulders."
        width="100%">
 </p>
