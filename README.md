@@ -4,8 +4,8 @@
        width="100%">
 </p>
 
-> *AI was born from the collective knowledge of humanity, and humanity now reaches new heights on the shoulders of AI.*
-> *We explore the harmonious interplay of technology, philosophy, and mutual progress.*
+*AI was born from the collective knowledge of humanity, and humanity now reaches new heights on the shoulders of AI.*
+*We explore the harmonious interplay of technology, philosophy, and mutual progress.*
 
 
 ### 📝 이 책의 독자들을 위한 파일 저장소입니다.
