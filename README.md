@@ -4,11 +4,6 @@
        width="100%">
 </p>
 
-
-
-<!-- HTML 태그 뒤에는 반드시 빈 줄을 한 칸 띄워야 아래 마크다운이 깨지지 않습니다 -->
-
-> [!WARNING]> 
 > ### 📝 이 책의 독자들을 위한 파일 저장소입니다.
 > *All other uses are strictly prohibited!!!*
 
