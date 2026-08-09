@@ -1,5 +1,7 @@
 <p align="center">
-  <img src="title.png" alt="프로젝트 로고" width="600px" />
+  <img src="title_image.png"
+       alt="AI upon Humanity's shoulders. Humanity upon AI's shoulders."
+       width="100%">
 </p>
 
 
