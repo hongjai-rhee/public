@@ -10,9 +10,7 @@
 <div align="left">
 
 ---
-
-> [!WARNING]
-> 
+ 
 > ### 📝 <쉽게 배우는 머신러닝 + 딥러닝> 책의 독자들을 위한 파일 저장소입니다.
 > *All other uses are strictly prohibited!!!*
 
