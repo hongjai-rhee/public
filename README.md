@@ -12,15 +12,15 @@
 ---
  
 > ## 📝 <**쉽게 배우는 머신러닝 + 딥러닝**> 책의 독자들을 위한 파일 저장소입니다.
-> *All other uses are strictly prohibited!!!*
+> 📢 *All other uses are strictly prohibited!!!*
 
 > **디렉토리**별 파일은 다음과 같으며 필요에 따라 수정/보완됩니다.
 > 
-> **/notebook** 장별 ipynb 노트북 파일(zip): 책의 실습 코드와 토픽별로 선별된 유튜브 링크 및 보충 자료 포함
+> 📢 **/notebook** 장별 ipynb 노트북 파일(zip): 책의 실습 코드와 토픽별로 선별된 유튜브 링크 및 보충 자료 포함
 > 
-> **/exercise** 장별 되새김 문제 정답 코드(zip): 복습을 위한 연습 문제 
+> 📢 **/exercise** 장별 되새김 문제 정답 코드(zip): 복습을 위한 연습 문제 
 > 
-> **/data** 실습 데이터 모음
+> 📢 **/data** 실습 데이터 모음
 
 > 📢 코드와 데이터의 사용 조건은 [라이선스](./docs/LICENSE.md)를 참조하세요.
 
