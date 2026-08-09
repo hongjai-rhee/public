@@ -9,8 +9,8 @@
 ---
 
 > *Artificial intelligence was built upon the collective wisdom of humanity;*
-> *in turn, humanity rises higher upon the capabilities of AI.*
-> *Exploring the co-evolution of human thought and artificial intelligence.*
+> *in turn, humanity rises higher upon the capabilities of AI,*
+> *exploring the co-evolution of human thought and artificial intelligence.*
 
 ---
 
