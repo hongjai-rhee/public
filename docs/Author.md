@@ -1,4 +1,8 @@
----
+<p align="left">
+  <img src="my_photoes_미시령1.png"
+       alt="my photoes"
+       width="80%">
+</p>
 
 ## 🤝 **이홍재 (Hongjai Rhee)**
 Hongjai Rhee received his Ph.D. in Economics from the University of California, Los Angeles (UCLA), where he was advised by Professor Guido W. Imbens, a Nobel Laureate in Economic Sciences.
@@ -16,8 +20,4 @@ He has published numerous research papers in international and domestics journal
 - M.A. in Economics, Seoul National University
 - B.A. in Economics, Seoul National University
 ---
-<p align="left">
-  <img src="my_photoes_미시령1.png"
-       alt="my photoes"
-       width="80%">
-</p>
+
