@@ -19,5 +19,5 @@ He has published numerous research papers in international and domestics journal
 <p align="center">
   <img src="미시령.png"
        alt="my photoes"
-       width="600%">
+       width="60%">
 </p>
