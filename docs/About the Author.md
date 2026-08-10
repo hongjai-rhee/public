@@ -1,5 +1,4 @@
 # About the Author
-
 ---
 
 ## **Hongjai Rhee**
