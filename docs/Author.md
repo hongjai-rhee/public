@@ -17,7 +17,7 @@ He has published numerous research papers in international and domestics journal
 - B.A. in Economics, Seoul National University
 ---
 <p align="center">
-  <img src="미시령_사진.png"
+  <img src="미시령.png"
        alt="my photoes"
        width="600%">
 </p>
