@@ -10,6 +10,7 @@
 
 ### 📝 이 책의 독자들을 위한 파일 저장소입니다. 
 📢 [[저자]](./docs/Author.md), [[책머리말]](./docs/책머리말.md)
+> ⚠️ *All other uses are strictly prohibited!!!*
 
 > [!IMPORTANT]
 >
@@ -20,8 +21,8 @@
 > **/exercise** 장별 되새김 문제 정답💡 코드(zip): 복습을 위한 연습 문제 
 > 
 > **/data** 실습 데이터📊 모음
->
-> ⚠️ *All other uses are strictly prohibited!!!*
+
+
 
 📢 코드와 데이터의 사용 조건은 [라이선스](./docs/LICENSE.md)를 참조하세요.
 
