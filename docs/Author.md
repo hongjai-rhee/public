@@ -1,5 +1,5 @@
 <p align="left">
-  <img src="my_photoes_미시령1.png"
+  <img src="my_photoes_미시령.png"
        alt="my photoes"
        width="100%">
 </p>
