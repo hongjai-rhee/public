@@ -1,5 +1,7 @@
 # About the Author
 
+---
+
 ## **Hongjai Rhee**
 Hongjai Rhee received his Ph.D. in Economics from the University of California, Los Angeles (UCLA), where he was advised by Professor Guido W. Imbens, a Nobel Laureate in Economic Sciences.
 
