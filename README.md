@@ -8,8 +8,7 @@
 *We explore the harmonious interplay of technology, philosophy, and mutual progress.*
 
 
-### 📝 이 책의 독자들을 위한 파일 저장소입니다.
-📢 [책머리말](./docs/책머리말.md)
+### 📝 이 책의 독자들을 위한 파일 저장소입니다. 📢 [책머리말](./docs/책머리말.md)
 
 > [!IMPORTANT]
 >
