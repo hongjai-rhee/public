@@ -14,7 +14,7 @@
 > [!IMPORTANT]
 >
 
->⚠️ *All other uses are strictly prohibited!!!*
+⚠️ *All other uses are strictly prohibited!!!*
 
 > **디렉토리**별 파일은 다음과 같으며 필요에 따라 수정/보완됩니다.
 > 
