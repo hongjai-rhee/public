@@ -5,7 +5,7 @@ Hongjai Rhee received his Ph.D. in Economics from the University of California, 
 
 He is currently a Professor at the School of Business, Ajou University, where he teaches big data analysis (with Python), and marketing analytics (with Excel).
 
-he has published numerous academic papers in domestic and international journals, regarding Bayesian econometrics, machine learning, and competion economics. 
+He has published numerous academic papers in domestic and international journals, regarding topics in machine learning, competion economics, and Bayesian econometrics. 
 
 ---
 
