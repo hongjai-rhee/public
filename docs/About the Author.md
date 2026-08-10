@@ -9,8 +9,6 @@ He has published numerous academic papers in domestic and international journals
 
 ---
 
-## **Career & Education**
-
 - Professor, School of Business, Ajou University
 - Senior Research Fellow, Korea Information Society Development Institute (KISDI)
 - Research Associate, California Institute of Technology (Caltech)
