@@ -1,6 +1,6 @@
 ---
 
-## 🤝**이홍재 (Hongjai Rhee)**
+## 🤝 **이홍재 (Hongjai Rhee)**
 Hongjai Rhee received his Ph.D. in Economics from the University of California, Los Angeles (UCLA), where he was advised by Professor Guido W. Imbens, a Nobel Laureate in Economic Sciences.
 
 He is currently a Professor at the School of Business, Ajou University, where he lectures big data analysis and marketing analytics.
