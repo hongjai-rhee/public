@@ -1,7 +1,7 @@
 <p align="left">
   <img src="my_photoes_미시령1.png"
        alt="my photoes"
-       width="80%">
+       width="100%">
 </p>
 
 ## 🤝 **이홍재 (Hongjai Rhee)**
