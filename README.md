@@ -13,7 +13,7 @@
 ⚠️ *All other uses are strictly prohibited!!!*
 
 > [!IMPORTANT]
-
+>
 > **디렉토리**별 파일은 다음과 같으며 필요에 따라 수정/보완됩니다.
 > 
 > **/notebook** 장별 ipynb 노트북💻 파일(zip): 책의 실습 코드와 토픽별로 선별된 유튜브 링크 및 보충 자료 포함
