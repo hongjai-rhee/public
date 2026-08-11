@@ -14,9 +14,9 @@ He has published numerous research papers in international and domestics journal
 ---
 
 - Professor, School of Business, *Ajou University*
-- Senior Research Fellow, *Korea Information Society Development Institute* (KISDI)
-- Ph.D. in Economics, *University of California, Los Angeles* (UCLA)
-- Research Associate, *California Institute of Technology* (Caltech)
+- Senior Research Fellow, *Korea Information Society Development Institute (KISDI)*
+- Ph.D. in Economics, *University of California, Los Angeles (UCLA)*
+- Research Associate, *California Institute of Technology (Caltech)*
 - M.A. in Economics, *Seoul National University*
 - B.A. in Economics, *Seoul National University*
 ---
