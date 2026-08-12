@@ -7,4 +7,4 @@
 
 ⭐️ 인공신경망 모델 학습 원리 [▶ Play Audio](https://drive.google.com/file/d/1-JGzGxoQjHsfGUYrZ8j9wu_yrtn4YM88/view?usp=sharing)
 
-책 학슴 목적으로만 사용 가능합니다.   © 2026 Hongjai Rhee. All rights reserved.
+이 파일들은 구입한 도서의 학습 목적으로만 사용 가능합니다.   © 2026 Hongjai Rhee. All rights reserved.
