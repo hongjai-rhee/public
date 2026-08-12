@@ -2,8 +2,6 @@
 
 ### 🎧 Voice-over
 
-지도학습 원리: [▶ Play Audio](https://drive.google.com/file/d/1vqYIMfu0iFbWNwEE521JwOwWsbyxzEk3/view?usp=sharing)
+선형 회귀 모델 학습 원리: [▶ Play Audio](https://drive.google.com/file/d/1vqYIMfu0iFbWNwEE521JwOwWsbyxzEk3/view?usp=sharing)
 
-인공신경망 학습 #1[▶ Play Audio](https://drive.google.com/file/d/1-JGzGxoQjHsfGUYrZ8j9wu_yrtn4YM88/view?usp=sharing)
-
-인공신경망 학습 #2[▶ Play Audio](https://drive.google.com/file/d/1-JGzGxoQjHsfGUYrZ8j9wu_yrtn4YM88/view?usp=sharing)
+인공신경망 모델 학습 원리 #1[▶ Play Audio](https://drive.google.com/file/d/1-JGzGxoQjHsfGUYrZ8j9wu_yrtn4YM88/view?usp=sharing)
