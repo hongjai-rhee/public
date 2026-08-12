@@ -3,3 +3,4 @@
 ### 🎧 Voice-over
 
 [▶ Play Audio](https://drive.google.com/file/d/1vqYIMfu0iFbWNwEE521JwOwWsbyxzEk3/view?usp=sharing)
+[▶ Play Audio](https://drive.google.com/file/d/1-JGzGxoQjHsfGUYrZ8j9wu_yrtn4YM88/view?usp=sharing)
