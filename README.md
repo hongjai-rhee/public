@@ -9,7 +9,7 @@
 
 
 ### 📝 이 책의 독자들을 위한 파일 저장소입니다. 
-https://product.kyobobook.co.kr/detail/S000220806717
+[교보문고에서 책 보기](https://product.kyobobook.co.kr/detail/S000220806717)
 
 📢 [[저자]](./docs/Author.md), [[책머리말]](./docs/책머리말.md)
 
