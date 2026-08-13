@@ -9,7 +9,7 @@
 
 ⭐️ PPO 강화학습 원리 [▶ Play Audio](https://drive.google.com/file/d/111lbc3ohuUlOUb0VlVEIMAZxqvR2Desk/view?usp=sharing)
 
-⭐️ DDQN으로 학습한 달착륙선 테스트 [▶ Play Audio](https://drive.google.com/file/d/1slsVLmzlPACsWR6GhPwtzk8r3J3SGBfP/view?usp=sharing).
+⭐️ DDQN으로 학습한 달착륙선 테스트 비행 [▶ Play Audio](https://drive.google.com/file/d/1slsVLmzlPACsWR6GhPwtzk8r3J3SGBfP/view?usp=sharing).
 
 
 이 파일들은 구입한 도서의 학습 목적으로만 사용 가능합니다.   © 2026 Hongjai Rhee. All rights reserved.
