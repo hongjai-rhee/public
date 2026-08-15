@@ -7,7 +7,7 @@
 
 ⭐️ 인공신경망 모델 학습 원리 [▶ Play Audio](https://drive.google.com/file/d/1-JGzGxoQjHsfGUYrZ8j9wu_yrtn4YM88/view?usp=sharing)
 
-⭐️ 트랜스포머 문장 생성 원리 [▶ Play Audio](https://drive.google.com/file/d/1Kmqt_Zke9rtv_3Wk-vcUsdIQrrhQpGb_/view?usp=sharing).
+⭐️ LLM 문장 생성 원리 [▶ Play Audio](https://drive.google.com/file/d/1Kmqt_Zke9rtv_3Wk-vcUsdIQrrhQpGb_/view?usp=sharing).
 
 ⭐️ PPO 강화학습 원리 [▶ Play Audio](https://drive.google.com/file/d/111lbc3ohuUlOUb0VlVEIMAZxqvR2Desk/view?usp=sharing)
 
