@@ -7,6 +7,8 @@
 
 ⭐️ 인공신경망 모델 학습 원리 [▶ Play Audio](https://drive.google.com/file/d/1-JGzGxoQjHsfGUYrZ8j9wu_yrtn4YM88/view?usp=sharing)
 
+⭐️ 문장 생성 원리 [▶ Play Audio](https://drive.google.com/file/d/1Kmqt_Zke9rtv_3Wk-vcUsdIQrrhQpGb_/view?usp=sharing).
+
 ⭐️ PPO 강화학습 원리 [▶ Play Audio](https://drive.google.com/file/d/111lbc3ohuUlOUb0VlVEIMAZxqvR2Desk/view?usp=sharing)
 
 ⭐️ DDQN으로 학습한 달착륙선 테스트 비행 [▶ Play Audio](https://drive.google.com/file/d/1slsVLmzlPACsWR6GhPwtzk8r3J3SGBfP/view?usp=sharing).
