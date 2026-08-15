@@ -1,4 +1,4 @@
-# Giants
+# Shoulders of Giants
 
 > **“If I have seen further, it is by standing on the shoulders of giants.”**
 > — Isaac Newton, 1675
@@ -23,7 +23,6 @@ The Bellman equation taught us to look beyond the immediate reward:
 
 > What matters now depends on what may happen next.
 
-This simple but profound idea became one of the foundations on which modern reinforcement learning was built.
 
 ---
 
