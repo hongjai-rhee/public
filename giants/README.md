@@ -12,9 +12,7 @@ Every model, algorithm, framework, and idea presented in this book stands on the
 
 **Contribution:** Dynamic Programming, **Bellman Equation**
 
-Richard Bellman introduced dynamic programming and the principle of optimality, providing the conceptual foundation for modern reinforcement learning.
-
-The Bellman equation taught us to look beyond the immediate reward: *What matters now depends on what may happen next*.
+Richard Bellman introduced dynamic programming and the principle of optimality, providing the conceptual foundation for modern reinforcement learning. The Bellman equation taught us to look beyond the immediate reward: *What matters now depends on what may happen next*.
 
 
 ---
