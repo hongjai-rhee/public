@@ -53,7 +53,7 @@ In 2017, the eight researchers introduced the **Transformer** architecture in th
 
 ### 🤖 John Schulman, et al. 
 
-**Contribution:** Proximal Policy Optimization (PPO)
+**Contribution:** Proximal Policy Optimization (**PPO**)
 
 Their 2017 paper introduced **Proximal Policy Optimization**, a remarkably practical approach to reinforcement learning. The simplicity and effectiveness of this idea made PPO one of the most widely used reinforcement-learning algorithms.
 
