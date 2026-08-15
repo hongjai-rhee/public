@@ -67,17 +67,9 @@ I would also like to acknowledge, *Generative AI itself.* While writing this boo
 
 ## 🌌 Standing on Their Shoulders
 
-Newton's metaphor has always seemed particularly appropriate for science.
+We see farther not because we are necessarily taller or smarter than those who came before us, but because **we stand where they stood, and then take one more step.**
 
-We see farther not because we are necessarily taller or smarter than those who came before us,
-
-but because **we stand where they stood, and then take one more step.**
-
-This book is one such step.
-
-To all the giants whose shoulders made that step possible:
-
-**Thank you.**
+This book is one such step. To all the giants whose shoulders made that step possible: **Thank you.**
 
 *— Hongjai Rhee*
 
