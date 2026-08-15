@@ -43,9 +43,9 @@ TensorFlow transformed deep learning from something that was difficult to implem
 
 ### 🔭 Ashish Vaswani, et al. 
 
-**Contribution:** **Self Attention algorithm**
+**Contribution:** **Self Attention**
 
-In 2017, the eight researchers introduced the Transformer architecture in their landmark paper: *“Attention Is All You Need.”* The idea behind self-attention also inspired one of the most important questions explored in this book:
+In 2017, the eight researchers introduced the **Transformer** architecture in their landmark paper: *“Attention Is All You Need.”* The idea behind self-attention also inspired one of the most important questions explored in this book:
 
 > *How can a model decide what matters by looking at everything in relation to everything else?*
 
