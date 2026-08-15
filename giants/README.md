@@ -8,23 +8,6 @@ Every model, algorithm, framework, and idea presented in this book stands on the
 
 ---
 
-### 🏛️ Richard Bellman 
-
-**Contribution:** Dynamic Programming, **Bellman Equation**
-
-Richard Bellman introduced dynamic programming and the principle of optimality, providing the conceptual foundation for modern reinforcement learning. The Bellman equation taught us to look beyond the immediate reward: *What matters now depends on what may happen next*.
-
-
----
-
-### 🧠 Yann LeCun, et al. 
-
-**Contribution:** **Convolutional Neural Networks** 
-
-Yann LeCun and his collaborators demonstrated how neural networks could learn visual representations through convolutional architectures. The idea that a machine can learn increasingly meaningful visual features—from edges to shapes to objects—became fundamental to modern computer vision.
-
----
-
 ### 🔥 Geoffrey Hinton, et al.   
 
 **Contribution:** Foundations of modern **deep learning**
@@ -41,6 +24,14 @@ TensorFlow transformed deep learning from something that was difficult to implem
 
 ---
 
+### 🧠 Yann LeCun, et al. 
+
+**Contribution:** **Convolutional Neural Networks** 
+
+Yann LeCun and his collaborators demonstrated how neural networks could learn visual representations through convolutional architectures. The idea that a machine can learn increasingly meaningful visual features—from edges to shapes to objects—became fundamental to modern computer vision.
+
+---
+
 ### 🔭 Ashish Vaswani, et al. 
 
 **Contribution:** **Self Attention**
@@ -48,6 +39,15 @@ TensorFlow transformed deep learning from something that was difficult to implem
 In 2017, the eight researchers introduced the **Transformer** architecture in their landmark paper: *“Attention Is All You Need.”* The idea behind self-attention also inspired one of the most important questions explored in this book:
 
 > *How can a model decide what matters by looking at everything in relation to everything else?*
+
+---
+
+### 🏛️ Richard Bellman 
+
+**Contribution:** Dynamic Programming, **Bellman Equation**
+
+Richard Bellman introduced dynamic programming and the principle of optimality, providing the conceptual foundation for modern reinforcement learning. The Bellman equation taught us to look beyond the immediate reward: *What matters now depends on what may happen next*.
+
 
 ---
 
