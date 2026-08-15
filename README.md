@@ -24,9 +24,9 @@
 > 
 > 📊 **/data** 실습 데이터 모음
 >
-> 🎯 **/video** 직접 만든 동영상 학습자료 [샘플](./video/README.md)
+> 🎯 **/video** 직접 만든 동영상 학습자료 [[샘플]](./video/README.md)
 > >
-> 🎯 **/giants** 이 첵의 풀판에 도움을 준 거인들의 어깨 [감사](./giants/README.md)
+> 🎯 **/giants** 이 첵의 츨판에 도움을 준 거인들의 어깨 [[감사]](./giants/README.md)
 
 
 📢 코드와 데이터의 사용 조건은 [라이선스](./docs/LICENSE.md)를 참조하세요.
