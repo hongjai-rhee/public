@@ -31,7 +31,7 @@ This simple but profound idea became one of the foundations on which modern rein
 
 **Contribution:** Convolutional Neural Networks (CNNs)
 
-Yann LeCun and his collaborators demonstrated how neural networks could learn visual representations through convolutional architectures, most famously through the **LeNet** family of models.
+Yann LeCun and his collaborators demonstrated how neural networks could learn visual representations through convolutional architectures.
 
 The idea that a machine can learn increasingly meaningful visual features—from edges to shapes to objects—became fundamental to modern computer vision.
 
