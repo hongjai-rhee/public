@@ -73,5 +73,6 @@ and then take **one more step**. This book is one such step. To all the giants w
 
 *— Hongjai Rhee*
 
+© 2026 Hongjai Rhee. All rights reserved.
 ---
 
