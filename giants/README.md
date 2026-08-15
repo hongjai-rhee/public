@@ -4,9 +4,7 @@
 
 This book was not written alone.
 
-Every model, algorithm, framework, and idea presented in this book stands on the work of people who came before us. Their ideas transformed the way we understand learning, intelligence, images, language, and decision-making.
-
-I created this page to acknowledge some of those giants.
+Every model, algorithm, framework, and idea presented in this book stands on the work of people who came before us. Their ideas transformed the way we understand learning, intelligence, images, language, and decision-making. I created this page to acknowledge some of those giants.
 
 ---
 
