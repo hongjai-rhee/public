@@ -68,7 +68,7 @@ The idea behind self-attention also inspired one of the most important questions
 
 ---
 
-### 🤖 John Schulman, Filip Wolski, Prafulla Dhariwal, Alec Radford & Oleg Klimov
+### 🤖 John Schulman, et al. 
 
 **Contribution:** Proximal Policy Optimization (PPO)
 
