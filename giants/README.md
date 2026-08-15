@@ -59,7 +59,7 @@ Their 2017 paper introduced **Proximal Policy Optimization**, a remarkably pract
 
 ---
 
-### 🌱 And Many More Giants
+### 🌱 Many More Others
 
 I would also like to acknowledge, *Generative AI itself.* While writing this book, I had the opportunity to discuss ideas and visualizations with **ChatGPT** and **Gemini**, among many others.
 
