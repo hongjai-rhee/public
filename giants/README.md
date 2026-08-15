@@ -71,7 +71,7 @@ We see farther not because we are necessarily taller or smarter than those who c
 
 This book is one such step. To all the giants whose shoulders made that step possible: 
 
-**Thank you.**
+**Thank you so much.**
 
 *— Hongjai Rhee*
 
