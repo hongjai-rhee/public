@@ -1,6 +1,5 @@
-# Shoulders of Giants #
 
-> ## *“If I have seen further, it is by standing on the shoulders of giants.”*
+## *“If I have seen further, it is by standing on the shoulders of giants.”*
 > — Isaac Newton, 1675
 
 This book was not written alone.
