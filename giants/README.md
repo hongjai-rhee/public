@@ -14,9 +14,7 @@ Every model, algorithm, framework, and idea presented in this book stands on the
 
 Richard Bellman introduced dynamic programming and the principle of optimality, providing the conceptual foundation for modern reinforcement learning.
 
-The Bellman equation taught us to look beyond the immediate reward:
-
-> What matters now depends on what may happen next.
+The Bellman equation taught us to look beyond the immediate reward: *What matters now depends on what may happen next*.
 
 
 ---
@@ -25,9 +23,7 @@ The Bellman equation taught us to look beyond the immediate reward:
 
 **Contribution:** **Convolutional Neural Networks** 
 
-Yann LeCun and his collaborators demonstrated how neural networks could learn visual representations through convolutional architectures.
-
-The idea that a machine can learn increasingly meaningful visual features—from edges to shapes to objects—became fundamental to modern computer vision.
+Yann LeCun and his collaborators demonstrated how neural networks could learn visual representations through convolutional architectures. The idea that a machine can learn increasingly meaningful visual features—from edges to shapes to objects—became fundamental to modern computer vision.
 
 ---
 
@@ -35,9 +31,7 @@ The idea that a machine can learn increasingly meaningful visual features—from
 
 **Contribution:** Foundations of modern **deep learning**
 
-Geoffrey Hinton, Yann LeCun, and Yoshua Bengio played pivotal roles in reviving and advancing neural-network-based learning.
-
-Their work helped establish deep neural networks as a practical and powerful approach to machine learning.
+Geoffrey Hinton, Yann LeCun, and Yoshua Bengio played pivotal roles in reviving and advancing neural-network-based learning. Their work helped establish deep neural networks as a practical and powerful approach to machine learning.
 
 ---
 
@@ -45,19 +39,15 @@ Their work helped establish deep neural networks as a practical and powerful app
 
 **Contribution:** **TensorFlow**
 
-TensorFlow transformed deep learning from something that was difficult to implement at scale into a framework that students, researchers, and practitioners could experiment with.
-
-Without frameworks such as TensorFlow, much of the experimentation in this book would have remained considerably harder.
+TensorFlow transformed deep learning from something that was difficult to implement at scale into a framework that students, researchers, and practitioners could experiment with. Without frameworks such as TensorFlow, much of the experimentation in this book would have remained considerably harder.
 
 ---
 
 ### 🔭 Ashish Vaswani, et al. 
 
-**Contribution:** **Transformer**
+**Contribution:** **Self Attention algorithm**
 
-In 2017, the eight researchers introduced the Transformer architecture in their landmark paper: *“Attention Is All You Need.”*
-
-The idea behind self-attention also inspired one of the most important questions explored in this book:
+In 2017, the eight researchers introduced the Transformer architecture in their landmark paper: *“Attention Is All You Need.”* The idea behind self-attention also inspired one of the most important questions explored in this book:
 
 > *How can a model decide what matters by looking at everything in relation to everything else?*
 
@@ -67,21 +57,15 @@ The idea behind self-attention also inspired one of the most important questions
 
 **Contribution:** Proximal Policy Optimization (PPO)
 
-Their 2017 paper introduced **Proximal Policy Optimization**, a remarkably practical approach to reinforcement learning.
-
-The simplicity and effectiveness of this idea made PPO one of the most widely used reinforcement-learning algorithms.
+Their 2017 paper introduced **Proximal Policy Optimization**, a remarkably practical approach to reinforcement learning. The simplicity and effectiveness of this idea made PPO one of the most widely used reinforcement-learning algorithms.
 
 ---
 
 ### 🌱 And Many More Giants
 
-I would also like to acknowledge.
+I would also like to acknowledge, *Artificial intelligence itself.*
 
-**Artificial intelligence itself.**
-
-While writing this book, I had the opportunity to discuss ideas and visualizations with **ChatGPT** and **Gemini**.
-
-It helped me turn many abstract ideas into explanations and experiments that could be shared with students.
+While writing this book, I had the opportunity to discuss ideas and visualizations with **ChatGPT** and **Gemini**, for example.
 
 ---
 
