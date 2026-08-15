@@ -8,9 +8,9 @@ Every model, algorithm, framework, and idea presented in this book stands on the
 
 ---
 
-### 🏛️ Richard Bellman — Seeing the Future Through the Present
+### 🏛️ Richard Bellman 
 
-**Contribution:** Dynamic Programming, Bellman Equation
+**Contribution:** Dynamic Programming, **Bellman Equation**
 
 Richard Bellman introduced dynamic programming and the principle of optimality, providing the conceptual foundation for modern reinforcement learning.
 
@@ -21,9 +21,9 @@ The Bellman equation taught us to look beyond the immediate reward:
 
 ---
 
-### 🧠 Yann LeCun — Teaching Machines to See
+### 🧠 Yann LeCun, et al. 
 
-**Contribution:** Convolutional Neural Networks (CNNs)
+**Contribution:** **Convolutional Neural Networks** 
 
 Yann LeCun and his collaborators demonstrated how neural networks could learn visual representations through convolutional architectures.
 
@@ -31,9 +31,9 @@ The idea that a machine can learn increasingly meaningful visual features—from
 
 ---
 
-### 🔥 Geoffrey Hinton, et al.  — The Deep Learning Revolution
+### 🔥 Geoffrey Hinton, et al.   
 
-**Contribution:** Foundations of modern deep learning
+**Contribution:** Foundations of modern **deep learning**
 
 Geoffrey Hinton, Yann LeCun, and Yoshua Bengio played pivotal roles in reviving and advancing neural-network-based learning.
 
@@ -41,9 +41,9 @@ Their work helped establish deep neural networks as a practical and powerful app
 
 ---
 
-### ⚙️ The TensorFlow Team — Making Deep Learning Practical
+### ⚙️ The TensorFlow Team  
 
-**Contribution:** TensorFlow
+**Contribution:** **TensorFlow**
 
 TensorFlow transformed deep learning from something that was difficult to implement at scale into a framework that students, researchers, and practitioners could experiment with.
 
@@ -51,17 +51,15 @@ Without frameworks such as TensorFlow, much of the experimentation in this book 
 
 ---
 
-### 🔭 Ashish Vaswani, et al. — Self Attention 
+### 🔭 Ashish Vaswani, et al. 
 
-**Contribution:** Transformer
+**Contribution:** **Transformer**
 
-In 2017, these eight researchers introduced the Transformer architecture in their landmark paper:
-
-**“Attention Is All You Need.”**
+In 2017, the eight researchers introduced the Transformer architecture in their landmark paper: *“Attention Is All You Need.”*
 
 The idea behind self-attention also inspired one of the most important questions explored in this book:
 
-> **How can a model decide what matters by looking at everything in relation to everything else?**
+> *How can a model decide what matters by looking at everything in relation to everything else?*
 
 ---
 
