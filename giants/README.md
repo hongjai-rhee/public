@@ -7,13 +7,11 @@ This book was not written alone.
 
 Every model, algorithm, framework, and idea presented in this book stands on the work of people who came before us. Their ideas transformed the way we understand learning, intelligence, images, language, and decision-making.
 
-I created this page to acknowledge some of those **giants**.
-
-They are not merely names in references. Their ideas made this book possible.
+I created this page to acknowledge some of those giants.
 
 ---
 
-## 🏛️ Richard Bellman — Seeing the Future Through the Present
+### 🏛️ Richard Bellman — Seeing the Future Through the Present
 
 **Contribution:** Dynamic Programming, Bellman Equation
 
@@ -26,7 +24,7 @@ The Bellman equation taught us to look beyond the immediate reward:
 
 ---
 
-## 🧠 Yann LeCun — Teaching Machines to See
+### 🧠 Yann LeCun — Teaching Machines to See
 
 **Contribution:** Convolutional Neural Networks (CNNs)
 
@@ -36,7 +34,7 @@ The idea that a machine can learn increasingly meaningful visual features—from
 
 ---
 
-## 🔥 Geoffrey Hinton, Yann LeCun & Yoshua Bengio — The Deep Learning Revolution
+### 🔥 Geoffrey Hinton, et al.  — The Deep Learning Revolution
 
 **Contribution:** Foundations of modern deep learning
 
@@ -46,7 +44,7 @@ Their work helped establish deep neural networks as a practical and powerful app
 
 ---
 
-## ⚙️ The TensorFlow Team — Making Deep Learning Practical
+### ⚙️ The TensorFlow Team — Making Deep Learning Practical
 
 **Contribution:** TensorFlow
 
@@ -56,7 +54,7 @@ Without frameworks such as TensorFlow, much of the experimentation in this book 
 
 ---
 
-## 🔭 Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Łukasz Kaiser & Illia Polosukhin
+### 🔭 Ashish Vaswani, et al. — Self Attention 
 
 **Contribution:** Transformer
 
@@ -70,7 +68,7 @@ The idea behind self-attention also inspired one of the most important questions
 
 ---
 
-## 🤖 John Schulman, Filip Wolski, Prafulla Dhariwal, Alec Radford & Oleg Klimov
+### 🤖 John Schulman, Filip Wolski, Prafulla Dhariwal, Alec Radford & Oleg Klimov
 
 **Contribution:** Proximal Policy Optimization (PPO)
 
@@ -80,13 +78,13 @@ The simplicity and effectiveness of this idea made PPO one of the most widely us
 
 ---
 
-## 🌱 And Many More Giants
+### 🌱 And Many More Giants
 
-There is one final contributor I would like to acknowledge.
+I would also like to acknowledge.
 
 **Artificial intelligence itself.**
 
-While writing this book, I had the opportunity to discuss ideas and visualizations with **ChatGPT**.
+While writing this book, I had the opportunity to discuss ideas and visualizations with **ChatGPT** and **Gemini**.
 
 It helped me turn many abstract ideas into explanations and experiments that could be shared with students.
 
