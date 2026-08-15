@@ -65,7 +65,9 @@ I would also like to acknowledge, *Generative AI itself.* While writing this boo
 
 ---
 
-We see farther not because we are necessarily taller or smarter than those who came before us, but because we stand where they stood, and then take **one more step**.
+We see farther not because we are necessarily taller or smarter than those who came before us, but because we stand where they stood, 
+
+and then take **one more step**.
 
 This book is one such step. To all the giants whose shoulders made that step possible: 
 
